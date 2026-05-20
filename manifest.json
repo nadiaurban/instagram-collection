@@ -8,7 +8,7 @@
   "browser_specific_settings": {
     "gecko": {
       "id": "instagram-collector@nadiaurban",
-      "strict_min_version": "57.0"
+      "strict_min_version": "109.0"
     }
   },
 
