@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      width: 260px;
+      padding: 16px;
+      margin: 0;
+      background: #fafafa;
+      color: #111;
+    }
+    h3 { margin: 0 0 14px 0; font-size: 14px; color: #333; letter-spacing: 0.3px; }
+
+    /* Status banner */
+    #statusBanner {
+      border-radius: 7px;
+      padding: 9px 12px;
+      margin-bottom: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      text-align: center;
+    }
+    #statusBanner.idle      { background: #f0f0f0; color: #888; }
+    #statusBanner.active    { background: #e6f4ea; color: #1e7e34; }
+    #statusBanner.stopped   { background: #fff3cd; color: #856404; }
+
+    .stats {
+      background: white;
+      border: 1px solid #e8e8e8;
+      border-radius: 7px;
+      padding: 10px 12px;
+      margin-bottom: 12px;
+    }
+    .stat { font-size: 13px; margin-bottom: 5px; color: #555; }
+    .stat:last-child { margin-bottom: 0; }
+    .stat span { font-weight: 600; color: #111; }
+    .stat.muted span { color: #aaa; }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin: 12px 0 6px 0;
+    }
+    button {
+      display: block;
+      width: 100%;
+      margin-bottom: 6px;
+      padding: 8px 10px;
+      border: none;
+      border-radius: 6px;
+      font-size: 13px;
+      cursor: pointer;
+      text-align: center;
+      font-weight: 500;
+    }
+    button:disabled { opacity: 0.4; cursor: default; }
+
+    #startBtn    { background: #1e7e34; color: white; }
+    #stopBtn     { background: #856404; color: white; }
+    .btn-posts    { background: #e8f0fe; color: #1a56cc; }
+    .btn-comments { background: #e8f4e8; color: #2a6e2a; }
+    .btn-reset    { background: #fce8e8; color: #a00; margin-top: 4px; }
+
+    #confirmReset {
+      display: none;
+      margin-top: 8px;
+      background: #fff8f8;
+      border: 1px solid #f5c6c6;
+      border-radius: 6px;
+      padding: 10px;
+    }
+    #confirmReset p { margin: 0 0 8px 0; font-size: 12px; color: #a00; }
+    #confirmReset .row { display: flex; gap: 6px; }
+    #confirmReset button { margin-bottom: 0; flex: 1; }
+    #confirmYes { background: #a00; color: white; }
+    #confirmNo  { background: #eee; color: #333; }
+
+    .hint { font-size: 11px; margin-top: 12px; color: #aaa; line-height: 1.5; }
+  </style>
+</head>
+<body>
+  <h3>Instagram Collector</h3>
+
+  <div id="statusBanner" class="idle">● Paused — press Start to collect</div>
+
+  <div class="stats">
+    <div class="stat" id="statPosts">Posts captured: <span>–</span></div>
+    <div class="stat" id="statComments">Comments captured: <span>–</span></div>
+    <div class="stat muted" id="statSession">Session started: <span>–</span></div>
+  </div>
+
+  <div class="section-label">Session</div>
+  <button id="startBtn">▶ Start new collection</button>
+  <button id="stopBtn" disabled>■ Stop collection</button>
+
+  <div class="section-label">Export</div>
+  <button class="btn-posts"    id="exportPosts"    disabled>Export posts NDJSON</button>
+  <button class="btn-comments" id="exportComments" disabled>Export comments NDJSON</button>
+
+  <div class="section-label">Reset</div>
+  <button class="btn-reset" id="resetBtn">Reset all captured data</button>
+
+  <div id="confirmReset">
+    <p>Reset all posts and comments?</p>
+    <div class="row">
+      <button id="confirmYes">Yes, reset</button>
+      <button id="confirmNo">Cancel</button>
+    </div>
+  </div>
+
+  <div class="hint">
+    Start clears previous data and begins a fresh session.<br>
+    Browse Instagram — posts capture automatically.<br>
+    Open a post and scroll comments to capture them.
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

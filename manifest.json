@@ -1,0 +1,23 @@
+{
+  "manifest_version": 2,
+  "name": "Instagram Collector",
+  "version": "1.0",
+  "description": "Captures Instagram posts, reels, and comments as you browse. Exports clean NDJSON for research pipelines.",
+
+  "permissions": [
+    "webRequest",
+    "webRequestBlocking",
+    "storage",
+    "downloads",
+    "*://*.instagram.com/*"
+  ],
+
+  "background": {
+    "scripts": ["capture-instagram.js", "background.js"]
+  },
+
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_title": "Instagram Collector"
+  }
+}
