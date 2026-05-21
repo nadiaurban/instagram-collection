@@ -111,6 +111,8 @@ All data stays on your device. The extension stores captures in `browser.storage
 - **Firefox only** — the extension uses Firefox-specific APIs (`browser.webRequest.filterResponseData`) not available in Chrome.
 - **Public content only** — private accounts whose posts you cannot see in the browser are not captured.
 - **Session-based** — pressing Start clears previous data and begins fresh. Export before starting a new session.
+- **Hashtag feeds** — scrolling a hashtag page (`/explore/tags/…`) does not capture posts automatically. To collect from a hashtag, open individual posts from the feed — once you navigate into a post, it is captured normally including comments.
+
 - **Comment pagination** — Instagram loads comments in batches. Scroll through and use "Load more" to capture them all; comments that never load in the browser are not captured.
 
 #### Media URL expiry
