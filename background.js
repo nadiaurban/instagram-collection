@@ -135,6 +135,15 @@ function parseComments(data, url) {
     }
 }
 
+// ── Toolbar icon ──────────────────────────────────────────────────────────────
+
+function updateIcon() {
+    const path = collecting
+        ? "icon-park--collect-picture.svg"
+        : "icon-park-outline--collect-picture.svg";
+    browser.browserAction.setIcon({ path });
+}
+
 // ── Persist to storage ────────────────────────────────────────────────────────
 
 function persist() {
@@ -176,7 +185,7 @@ function exportNDJSON(type) {
 
 // ── Messages from popup ───────────────────────────────────────────────────────
 
-browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
+browser.runtime.onMessage.addListener((message, _sender, sendResponse) => {
 
     if (message.action === "getStats") {
         sendResponse({
@@ -195,6 +204,7 @@ browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
         session_started_at = Date.now();
         persist();
         broadcastStats();
+        updateIcon();
         sendResponse({ ok: true });
     }
 
@@ -202,6 +212,7 @@ browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
         collecting = false;
         persist();
         broadcastStats();
+        updateIcon();
         sendResponse({ ok: true });
     }
 
@@ -214,6 +225,7 @@ browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
         collecting         = false;
         session_started_at = null;
         browser.storage.local.set({ posts: {}, comments: {}, collecting: false, session_started_at: null });
+        updateIcon();
         sendResponse({ ok: true });
     }
 

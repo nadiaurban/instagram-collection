@@ -8,7 +8,11 @@
   "browser_specific_settings": {
     "gecko": {
       "id": "instagram-collector@nadiaurban",
-      "strict_min_version": "109.0"
+      "strict_min_version": "109.0",
+      "data_collection_permissions": {
+        "required": ["websiteContent"],
+        "optional": []
+      }
     }
   },
 
@@ -24,7 +28,13 @@
     "scripts": ["capture-instagram.js", "background.js"]
   },
 
+  "icons": {
+    "48": "icon-park-outline--collect-picture.svg",
+    "96": "icon-park-outline--collect-picture.svg"
+  },
+
   "browser_action": {
+    "default_icon": "icon-park-outline--collect-picture.svg",
     "default_popup": "popup.html",
     "default_title": "Instagram Collector"
   }
