@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Instagram Collector",
-  "version": "1.0",
+  "version": "1.1",
   "description": "Captures Instagram posts, reels, and comments as you browse. Exports clean NDJSON for research pipelines.",
   "homepage_url": "https://github.com/nadiaurban/instagram-collection",
 
