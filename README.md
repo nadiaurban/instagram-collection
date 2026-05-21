@@ -93,10 +93,14 @@ with open("instagram-posts-2026-05-21.ndjson") as f:
 
 **From Firefox Add-ons (AMO):** search for *Instagram Collector* or use the direct link *(coming soon)*.
 
-**Manual install:**
-1. Download the latest `instagram-collector.zip` from [Releases](https://github.com/nadiaurban/instagram-collection/releases)
+**Direct install (signed XPI):**
+1. Download [`instagram-collector.xpi`](https://github.com/nadiaurban/instagram-collection/raw/main/instagram-collector.xpi)
+2. Firefox will prompt you to install it — click Add
+
+**Manual install from source:**
+1. Clone or download this repository
 2. In Firefox, go to `about:addons` → gear icon → **Install Add-on From File…**
-3. Select the zip file
+3. Select the `instagram-collector.xpi` file
 
 ---
 
