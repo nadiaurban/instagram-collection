@@ -16,8 +16,11 @@ Data is collected passively while you scroll and exported as [NDJSON](https://nd
 | Likes, comments, views | ✓ | |
 | Author username, display name, verification status | ✓ | ✓ |
 | AI-generated content label (Instagram's own flag) | ✓ | |
+| Image URL, video URL, carousel URLs ¹ | ✓ | |
 | Comment text & timestamp | | ✓ |
 | Like count per comment | | ✓ |
+
+¹ Media URLs are signed CDN links that expire within hours. Download the actual files soon after collecting — see [Media URL expiry](#media-url-expiry) below.
 
 Collection works across **any Instagram surface** — your home feed, hashtag pages, search results, Explore, and saved posts. Whatever loads in the browser gets captured.
 
@@ -99,6 +102,30 @@ All data stays on your device. The extension stores captures in `browser.storage
 - **Public content only** — private accounts whose posts you cannot see in the browser are not captured.
 - **Session-based** — pressing Start clears previous data and begins fresh. Export before starting a new session.
 - **Comment pagination** — Instagram loads comments in batches. Scroll through and use "Load more" to capture them all; comments that never load in the browser are not captured.
+
+#### Media URL expiry
+
+The `image_url`, `video_url`, and `carousel_urls` fields in your NDJSON contain signed Instagram CDN links. These URLs expire — typically within a few hours of collection. If you need the actual media files, download them promptly after exporting using a tool like `wget` or a Python script:
+
+```python
+import json, requests, pathlib
+
+with open("instagram-posts-2026-05-21.ndjson") as f:
+    posts = [json.loads(line) for line in f]
+
+out = pathlib.Path("media")
+out.mkdir(exist_ok=True)
+
+for post in posts:
+    url = post.get("video_url") or post.get("image_url")
+    if not url:
+        continue
+    ext = ".mp4" if post.get("video_url") else ".jpg"
+    dest = out / f"{post['media_id']}{ext}"
+    dest.write_bytes(requests.get(url).content)
+```
+
+The post permalink (`url` field) is permanent and can be used to revisit the post later, but the CDN media links cannot be refreshed without re-loading the page.
 
 ---
 
