@@ -18,6 +18,7 @@ function detectView(source_platform_url) {
     if (path[0] === "explore") {
         if (path[1] === "locations") return "location";
         if (path[1] === "search") return "search";
+        if (path[1] === "tags") return "hashtag";
         return "explore";
     }
     if (path[0] === "popular") return "popular";
@@ -137,7 +138,7 @@ function traverseForMedia(datas, view, source_url) {
                     }
 
                 } else if (property === "medias" || property === "fill_items") {
-                    if (!["explore", "search"].includes(view)) continue;
+                    if (!["explore", "search", "hashtag"].includes(view)) continue;
                     items = val.map(m => m["media"]);
 
                 } else if (property === "feed_items") {
@@ -264,7 +265,8 @@ function captureInstagramPosts(responseText, source_platform_url, source_url) {
     if (source_url.includes('injected_story_units')) return [];
 
     // Skip pre-cache noise (reels audio, explore loading in background)
-    if ((source_platform_url.includes('reels/audio') || source_platform_url.includes('/explore/')) &&
+    // Hashtag pages (/explore/tags/…) are excluded from this block — they need GraphQL through.
+    if ((source_platform_url.includes('reels/audio') || (source_platform_url.includes('/explore/') && view !== "hashtag")) &&
         !source_platform_url.includes('/locations/') &&
         (source_url.endsWith('graphql') || source_url.endsWith('graphql/query'))) {
         return [];
