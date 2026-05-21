@@ -4,6 +4,16 @@ A Firefox extension for researchers that captures Instagram posts and comments a
 
 Data is collected passively while you scroll and exported as [NDJSON](https://ndjson.org/) files ready for any research pipeline.
 
+### Background
+
+This tool was inspired by [Zeeschuimer](https://github.com/digitalmethodsinitiative/zeeschuimer) (Digital Methods Initiative), which takes a similar passive-capture approach across several social media platforms. Instagram Collector focuses exclusively on Instagram and fills the gaps Zeeschuimer leaves there: it captures **comments**, **media URLs**, and works across surfaces that Zeeschuimer does not support — including the For You feed, Explore, Reels, Saved posts, and hashtag pages.
+
+### Research use and terms of service
+
+Instagram Collector is a **passive capture** tool. It reads data that your browser has already downloaded as part of normal browsing — it sends no automated requests, performs no crawling, and does not interact with Instagram's servers beyond what you do yourself. This is the same principle as exporting a HAR file from browser DevTools, and the same approach used by tools like Zeeschuimer that are widely accepted in academic research.
+
+That said, Instagram's Terms of Service broadly restrict data collection. Whether and how this tool is appropriate for your study is a question for your institution's ethics review board (IRB/REC). It is your responsibility to ensure your data collection complies with applicable laws and your institution's guidelines.
+
 ---
 
 ## What it captures
